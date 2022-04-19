@@ -290,17 +290,15 @@ func (cl *Resources) cleanupVolume(ctx context.Context, offset int, volumeID str
 		}
 	}
 
-	if info.NodeID != "" {
-		if _, err := cl.ControllerClient.ControllerUnpublishVolume(
-			ctx,
-			&csi.ControllerUnpublishVolumeRequest{
-				VolumeId: volumeID,
-				NodeId:   info.NodeID,
-				Secrets:  cl.Context.Secrets.ControllerUnpublishVolumeSecret,
-			},
-		); err != nil {
-			errs = append(errs, fmt.Errorf("ControllerUnpublishVolume for volume ID %s failed: %s", volumeID, err))
-		}
+	if _, err := cl.ControllerClient.ControllerUnpublishVolume(
+		ctx,
+		&csi.ControllerUnpublishVolumeRequest{
+			VolumeId: volumeID,
+			NodeId:   info.NodeID,
+			Secrets:  cl.Context.Secrets.ControllerUnpublishVolumeSecret,
+		},
+	); err != nil {
+		errs = append(errs, fmt.Errorf("ControllerUnpublishVolume for volume ID %s failed: %s", volumeID, err))
 	}
 
 	if _, err := cl.ControllerClient.DeleteVolume(
