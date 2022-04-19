@@ -1723,6 +1723,6 @@ func VolumeLifecycle(r *Resources, sc *TestContext, count int) {
 			},
 		)
 	}
-	fmt.Println("going to sleep for 3 minutes")
+	By("sleeping for 3 minutes")
 	time.Sleep(180 * time.Second)
 }
