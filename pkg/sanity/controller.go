@@ -1712,6 +1712,7 @@ func VolumeLifecycle(r *Resources, sc *TestContext, count int) {
 	// ControllerPublishVolume
 	for i := 0; i < count; i++ {
 		By("calling controllerpublish on that volume")
+		By("heka stam!")
 		r.MustControllerPublishVolume(
 			context.Background(),
 			&csi.ControllerPublishVolumeRequest{
