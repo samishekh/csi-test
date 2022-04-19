@@ -21,6 +21,7 @@ import (
 	"fmt"
 	"strconv"
 	"strings"
+	"time"
 
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/status"
@@ -1722,4 +1723,6 @@ func VolumeLifecycle(r *Resources, sc *TestContext, count int) {
 			},
 		)
 	}
+	fmt.Println("going to sleep for 3 minutes")
+	time.Sleep(180 * time.Second)
 }
